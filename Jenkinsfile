@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'dockerserver' } // if you don't have other steps, 'any' agent works
-    env.JAVA_HOME="${tool 'jdk-8u45'}"
+    env.JAVA_HOME="${tool 'JDK_8''}"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     withEnv(['jdk = tool name: JDK_8', 
            'env.JAVA_HOME = "${jdk}"']) {

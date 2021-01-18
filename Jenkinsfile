@@ -11,7 +11,9 @@ pipeline {
                 }
             }
             steps {
-                env.JAVA_HOME = tool 'JDK_8'
+                jdk = tool name: 'JDK_8'
+                env.JAVA_HOME = "${jdk}"
+                echo "jdk installation path is: ${jdk}"
                 sh 'mvn --version'
             }
         }

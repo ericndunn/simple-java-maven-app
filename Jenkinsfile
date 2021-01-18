@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                   label 'dockerserver'  // both label and image
-                  image 'maven:3.5.2-jdk-8'
+                  image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
             }
             steps {

@@ -11,6 +11,7 @@ pipeline {
         stage('Test') {
         agent {
                 docker {
+                    label 'rhel7'  // both label and image
                     image 'maven:3-alpine' 
                     args '-v /root/.m2:/root/.m2' 
                 }

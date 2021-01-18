@@ -1,3 +1,4 @@
+/* groovylint-disable CompileStatic, FileEndsWithoutNewline, TrailingWhitespace */
 pipeline {
     agent {
         docker {
@@ -10,7 +11,9 @@ pipeline {
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
-        }        stage('Test') {
+        }        
+        
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
@@ -20,6 +23,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'

@@ -1,4 +1,4 @@
-/* groovylint-disable DuplicateStringLiteral, GStringExpressionWithinString, TrailingWhitespace */
+/* groovylint-disable DuplicateMapLiteral, DuplicateStringLiteral, GStringExpressionWithinString, TrailingWhitespace */
 pipeline {
     agent { label 'dockerserver' } // if you don't have other steps, 'any' agent works
 
@@ -10,9 +10,13 @@ pipeline {
                   image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
             }
-            environment { 
+            // environment { 
+            //     jdk = tool name: 'JDK_8'
+            //     env.JAVA_HOME = '${jdk}'
+            // }
+            environment {
                 jdk = tool name: 'JDK_8'
-                env.JAVA_HOME = '${jdk}'
+                env.JAVA_HOME = "${jdk}"
             }
             steps {
                 echo "jdk installation path is: ${jdk}"

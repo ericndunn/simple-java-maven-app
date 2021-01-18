@@ -1,34 +1,26 @@
-/* groovylint-disable CompileStatic, FileEndsWithoutNewline, TrailingWhitespace */
 pipeline {
-    agent { label 'rhel7' }
+    agent { label 'dockerserver' } // if you don't have other steps, 'any' agent works
     stages {
-        stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests clean package' 
-            }
-        }        
-        
-        stage('Test') {
-        agent {
+        stage('Back-end') {
+            agent {
                 docker {
-                    label 'rhel7'  // both label and image
-                    image 'maven:3-alpine' 
-                    args '-v /root/.m2:/root/.m2' 
+                  label 'dockerserver'  // both label and image
+                  image 'maven:3-alpine'
                 }
             }
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+                sh 'mvn --version'
             }
         }
-        
-        stage('Deliver') {
+        stage('Front-end') {
+            agent {
+              docker {
+                label 'dockerserver'  // both label and image
+                image 'node:7-alpine' 
+              }
+            }
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                sh 'node --version'
             }
         }
     }

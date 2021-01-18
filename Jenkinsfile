@@ -10,9 +10,11 @@ pipeline {
                   image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
             }
-            steps {
+            environment { 
                 jdk = tool name: 'JDK_8'
                 env.JAVA_HOME = "${jdk}"
+            }
+            steps {
                 echo "jdk installation path is: ${jdk}"
                 sh 'mvn --version'
             }

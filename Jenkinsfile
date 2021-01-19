@@ -1,4 +1,5 @@
-/* groovylint-disable DuplicateStringLiteral, FileEndsWithoutNewline, NglParseError, TrailingWhitespace */
+/* groovylint-disable , DuplicateStringLiteral, FileEndsWithoutNewline, TrailingWhitespace */
+// NglParseError, TrailingWhitespace
 pipeline {
     agent { label 'dockerserver' }
     stages {
@@ -8,6 +9,7 @@ pipeline {
                   label 'dockerserver'  // both label and image
                   image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
+              } 
             }
             steps {
                 withEnv(["JAVA_HOME=${ tool 'JDK_8' }"]) {

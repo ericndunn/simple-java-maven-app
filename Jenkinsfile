@@ -3,7 +3,7 @@ pipeline {
     agent {
         docker {
             label 'dockerserver'
-            image 'maven:3-alpine'
+            image 'maven:3'
             args '-v /root/.m2:/root/.m2'
             args '-e JAVA_HOME = /usr/java/latest11'
         }

@@ -1,30 +1,26 @@
-/* groovylint-disable , BlockStartsWithBlankLine, DuplicateStringLiteral, FileEndsWithoutNewline, TrailingWhitespace */
-// NglParseError, TrailingWhitespace
+/* groovylint-disable FileEndsWithoutNewline, TrailingWhitespace */
 pipeline {
-    agent { label 'dockerserver' }
+    agent {
+        docker {
+            label 'dockerserver'
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     stages {
-        stage('TEST1') {
-            agent {
-                docker {
-                    label 'dockerserver'  // both label and image
-                    image 'zenika/alpine-maven:3-jdk8-onbuild'
-                }
-            } 
+        stage('Build') {
             steps {
-                sh 'printenv'
-                sh 'mvn --version'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('TEST2') {
-            agent {
-                docker {
-                label 'dockerserver'  // both label and image
-                image 'node:7-alpine' 
-              }
-            }
+        stage('Test') { 
             steps {
-                sh 'printenv'
-                sh 'node --version'
+                sh 'mvn test' 
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' 
+                }
             }
         }
     }

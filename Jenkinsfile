@@ -14,7 +14,7 @@ pipeline {
                 jdk 'JDK_8'
             }
             environment {
-                env.JAVA_HOME = "${jdk}"
+                JAVA_HOME = "${jdk}"
             }
             steps {
                 echo "jdk installation path is: ${jdk}"

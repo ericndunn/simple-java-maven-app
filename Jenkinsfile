@@ -10,12 +10,10 @@ pipeline {
                   image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
             }
-            // environment { 
-            //     jdk = tool name: 'JDK_8'
-            //     env.JAVA_HOME = '${jdk}'
-            // }
+            tools {
+                jdk 'JDK_8'
+            }
             environment {
-                jdk = tool name: 'JDK_8'
                 env.JAVA_HOME = "${jdk}"
             }
             steps {

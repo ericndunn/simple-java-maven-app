@@ -1,11 +1,11 @@
-/* groovylint-disable FileEndsWithoutNewline, TrailingWhitespace */
+/* groovylint-disable FileEndsWithoutNewline, TrailingWhitespace, UnusedVariable, VariableName */
 pipeline {
     agent {
         docker {
             label 'dockerserver'
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
-            ENV 'JAVA_HOME=/usr/java/latest11'
+            ENV JAVA_HOME = '/usr/java/latest11'
         }
     }
     stages {

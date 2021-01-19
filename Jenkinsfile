@@ -1,5 +1,5 @@
 /* groovylint-disable DuplicateStringLiteral, FileEndsWithoutNewline, NglParseError, TrailingWhitespace */
-pipeline
+pipeline {
     agent { label 'dockerserver' }
     stages {
         stage('Back-end') {

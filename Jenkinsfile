@@ -10,6 +10,9 @@ pipeline {
                     image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
             } 
+            steps {
+                sh 'printenv'
+            }
         }
         stage('TEST2') {
             agent {
@@ -17,6 +20,9 @@ pipeline {
                 label 'dockerserver'  // both label and image
                 image 'node:7-alpine' 
               }
+            }
+            steps {
+                sh 'printenv'
             }
         }
     }

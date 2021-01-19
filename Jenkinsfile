@@ -12,6 +12,7 @@ pipeline {
             } 
             steps {
                 sh 'printenv'
+                sh 'mvn --version'
             }
         }
         stage('TEST2') {
@@ -23,6 +24,7 @@ pipeline {
             }
             steps {
                 sh 'printenv'
+                sh 'node --version'
             }
         }
     }

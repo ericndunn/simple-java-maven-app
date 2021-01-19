@@ -3,23 +3,20 @@
 pipeline {
     agent { label 'dockerserver' }
     stages {
-        stage('Back-end') {
+        stage('TEST1') {
             agent {
                 docker {
-                  label 'dockerserver'  // both label and image
-                  image 'zenika/alpine-maven:3-jdk8-onbuild'
+                    label 'dockerserver'  // both label and image
+                    image 'zenika/alpine-maven:3-jdk8-onbuild'
                 }
             } 
         }
-        stage('Front-end') {
+        stage('TEST2') {
             agent {
-              docker {
+                docker {
                 label 'dockerserver'  // both label and image
                 image 'node:7-alpine' 
               }
-            }
-            steps {
-                sh 'node --version'
             }
         }
     }

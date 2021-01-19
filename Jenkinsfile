@@ -5,7 +5,7 @@ pipeline {
             label 'dockerserver'
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
-            env.JAVA_HOME = '/usr/java/latest11'
+            args '-e JAVA_HOME = /usr/java/latest11'
         }
     }
     stages {
